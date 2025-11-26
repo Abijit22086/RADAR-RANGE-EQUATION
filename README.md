@@ -25,57 +25,48 @@ The Radar Range Equation relates the power received by a radar from a target at 
 
 ## PROGRAM:
 ```
-G = 60;
-eta = 0.5;
-Ae = 1;
+G = 75;
+eta = 0.65;
+Ae = 1.2;
 
-Smin = 1e-10;
+Smin = 2e-11;
 
-Ppeak= 2000:100:10000; 
+Ppeak = linspace(1500, 12000, 400);
 
-Rmax_values = zeros(1, length(Ppeak));
-
-for i = 1:length(Ppeak)
-    Rmax_values(i) = ((Ppeak(i) * G * eta * Ae) / (16 * %pi^2 * Smin))^(1/4);
-end
+Rmax_values = ((Ppeak .* G .* eta .* Ae) ./ (16 * %pi^2 * Smin)).^(1/4);
 
 clf;
 subplot(3,1,1);
-plot(Ppeak, Rmax_values,'b');
+plot(Ppeak, Rmax_values, 'b');
 xlabel('P_{peak}');
 ylabel('R_{max}');
 
-clear "G" "Rmax_values" "Ppeak";
-Ppeak = 5000;
-G = 10:5:100;
-Rmax_values = zeros(1, length(G));
+clear G Rmax_values Ppeak;
+Ppeak = 7000;
 
-for i = 1:length(G)
-    Rmax_values(i) = ((Ppeak * G(i) * eta * Ae) / (16 * %pi^2 * Smin))^(1/4);
-end
+G = linspace(5, 125, 400);
+Rmax_values = ((Ppeak .* G .* eta .* Ae) ./ (16 * %pi^2 * Smin)).^(1/4);
 
 subplot(3,1,2);
-plot(G, Rmax_values,'r');
-xlabel("G");
-ylabel("R_{max}");
+plot(G, Rmax_values, 'r');
+xlabel('G');
+ylabel('R_{max}');
 
-clear "G" "Rmax_values" "Smin";
-G = 60;
-Smin_values = logspace(-12, -8, 50);
-Rmax_values = zeros(1, length(Smin_values));
+clear G Rmax_values Smin;
+G = 75;
 
-for i = 1:length(Smin_values)
-    Rmax_values(i) = ((Ppeak * G * eta * Ae) / (16 * %pi^2 * Smin_values(i)))^(1/4);
-end
+Smin_values = logspace(-13, -9, 400);
+Rmax_values = ((Ppeak .* G .* eta .* Ae) ./ (16 * %pi^2 .* Smin_values)).^(1/4);
 
 subplot(3,1,3);
-plot(Smin_values, Rmax_values,'g');
-xlabel("S_{min}");
-ylabel("R_{max}");
+plot(Smin_values, Rmax_values, 'g');
+xlabel('S_{min}');
+ylabel('R_{max}');
+
 
 ```
 ## OUTPUT WAVEFORM:
-
+<img width="1919" height="1141" alt="Screenshot 2025-11-27 003626" src="https://github.com/user-attachments/assets/347c9c78-ecbd-49c0-919e-519f2e42fd0e" />
 
 
 ## TABULATION :
