@@ -70,6 +70,7 @@ ylabel('R_{max}');
 
 
 ## TABULATION :
+<img width="871" height="1280" alt="image" src="https://github.com/user-attachments/assets/0e590d9c-d927-49aa-b588-29b94ce64a99" />
 
 
 ## RESULT:
